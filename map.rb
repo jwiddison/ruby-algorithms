@@ -31,13 +31,11 @@ puts "\nReduce (Iterative):"
 puts reduce_iterative([1,2,3,4,5], 0) { |acc, item| acc + item }
 puts reduce_iterative(['How', ' are', ' you?'], '') { |acc, item| acc << item }
 
-# TODO: Get this working
 def reduce_recursive(list, acc)
-  return if list.empty?
-  item = list.shift
-  puts "acc: #{acc}, item: #{item}, list: #{list}"
-  acc = reduce_recursive(list, acc) { |acc, item| yield(acc, item)}
-  acc
+  return yield(acc, list.first) if list.size == 1
+  acc = yield(acc, list.shift)
+  reduce_recursive(list, acc) { |acc, item| yield(acc, item) }
 end
 puts "\nReduce (Recursive):"
 puts reduce_recursive([1,2,3,4,5], 0) { |acc, item| acc + item }.inspect
+puts reduce_recursive(['How', ' are', ' you?'], '') { |acc, item| acc << item }
