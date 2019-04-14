@@ -1,5 +1,3 @@
-# REDUCE
-
 def reduce_iterative(list, acc)
   list.each { |item| acc = yield(acc, item) }
   acc

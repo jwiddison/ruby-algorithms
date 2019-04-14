@@ -1,5 +1,3 @@
-# MAP
-
 def iterative_map(list)
   new_list = []
   list.each { |item| new_list << yield(item) }
